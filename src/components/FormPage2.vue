@@ -272,67 +272,82 @@ export default {};
 .login-card {
   height: 780px;
 }
-/* input{
-   height: 2.48438rem;
-  border: 1px solid #cacaca;
-  border-radius: 2px;
-    margin: 0 0 1rem;
-  padding: 0.5rem;
-}  */
-.form-radio {
-  height: 0px;
+.form-horizontal .form-group {
+  margin-right: -20px;
+  margin-left: -20px;
 }
-textarea {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  height: 2.48438rem;
-  margin: 0 0 1rem;
-  padding: 0.5rem;
-  border: 1px solid #cacaca;
-  border-radius: 2px;
-  background-color: #fff;
-  box-shadow: none;
-  font-family: inherit;
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #4b4b4b;
-  transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
-  padding-bottom: 0.04rem;
-  appearance: none;
-}
-textarea {
-  height: 75px;
-}
-
 .form-group {
   margin-bottom: 1rem;
   margin-right: 20px;
   margin-left: 20px;
+}
+textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 7rem;
+    margin: 0 0 1rem;
+    padding: 0.5rem;
+    border: 1px solid #cacaca;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: none;
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4b4b4b;
+    transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+	padding-left: 1rem;
+    padding-bottom: 0.04rem;
+			
+
+}
+[type=text] {
+box-sizing: border-box;
+    width: 100%;
+	margin: 0 0 1rem;
+    padding: 0.5rem;
+    border: 1px solid #cacaca;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: none;
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4b4b4b;
+    transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+	padding-left: 1rem;
+    padding-bottom: 0.04rem;
+}
+.custom-control {
+    position: relative;
+   display: inline-flex;
+    margin-right: 1rem;
+    min-height: 1.5rem;
+    padding-left: 2.5rem;
+}
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+}
+.custom-control-label {
+    position: relative;
+    margin-bottom: 0;
 }
 label {
   font-weight: 600;
   display: inline-block;
   max-width: 100%;
 }
-.form-input {
-  position: relative;
-  min-height: 1px;
-  padding-right: 5px;
-  padding-left: 5px;
-  text-align: left;
-}
 .form-label {
   position: relative;
   min-height: 1px;
   margin: 10px 0px;
-}
-
-.custom-control {
-  position: relative;
-  display: block;
-  min-height: 1.5rem;
-  padding-left: 2.5rem;
 }
 </style>

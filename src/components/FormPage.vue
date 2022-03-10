@@ -214,6 +214,9 @@ export default {
       this.$emit("previous");
     },
     next(e) {
+       this.$emit("next");
+       this.errors = {}
+
 if(this.firstName && this.lastName)
 
 this.error=[];
@@ -227,8 +230,7 @@ if(!this.lastName)
 }
 console.warn("errors",this.error)
 e.preventDefault()
-      this.$emit("next");
-       this.errors = {}
+     
 
     },
   },

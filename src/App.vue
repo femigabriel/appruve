@@ -4,18 +4,18 @@
   v-show="current == 0"
     @next="current = current + 1"
    />
-  <!-- <FormPage2
+  <FormPage2
    v-show="current == 1"
       @next="current = current + 1"
       @previous="current = current - 1"
-  /> -->
+  /> 
   
 </template>
 
 <script>
 import Logo from "./components/Logo.vue";
 import FormPage from "./components/FormPage.vue";
-// import FormPage2 from "./components/FormPage2.vue";
+import FormPage2 from "./components/FormPage2.vue";
 
 
 export default {
@@ -23,7 +23,7 @@ export default {
   components: {
     Logo,
     FormPage,
-    // FormPage2,
+    FormPage2,
   
   },
 
