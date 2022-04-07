@@ -7,8 +7,9 @@
        <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
     <ul>
-    <li v-for="e in error" :key="e">
-     {{ e }}</li>
+    <li v-for="e in errors" :key="e">
+     {{e}}
+     </li>
     </ul>
   </p>
     </div>
@@ -17,19 +18,15 @@
         <div class="form-group">
           <div class="form-label">
         
-            <label for="firstName" class="control-label">First name</label>
+            <label for="firstName" class="control-label">First Name</label>
           </div>
-          <div class="form-input">
+          <div class="form-input flex">
             <input
               type="text"
-             
-              class="form-control"
+             class="form-control"
               name="firstName"
-              
               placeholder="First name"
-              errormessage=""
-            
-              v-model="firstName"
+             v-model="firstName"
             />
           </div>
         </div>
@@ -39,18 +36,15 @@
       <div class="form-container">
         <div class="form-group">
           <div class="form-label">
-            <label for="lastName" class="control-label">Last name</label>
+            <label for="lastName" class="control-label">Last Name</label>
           </div>
-          <div class="form-input">
+          <div class="form-input flex">
             <input
               type="text"
-            
               class="form-control"
               name="lastName"
-            
               placeholder="Last name"
               errormessage="Please enter last name"
-            
               v-model="lastName"
             />
           </div>
@@ -62,18 +56,14 @@
       <div class="form-label">
         <label for="email" class="control-label">Work Email</label>
       </div>
-      <div class="form-input">
+      <div class="form-input grid">
         <input
           type="text"
-         
-          class="form-control"
+         class="form-control"
           name="email"
-       
           autocomplete="email"
           placeholder="Your work email"
-          errormessage="Please enter email"
-        
-          v-model="email"
+         v-model="email"
         />
       </div>
     </div>
@@ -84,7 +74,7 @@
           <div class="form-label">
             <label for="password" class="control-label">Password</label>
           </div>
-          <div class="form-input">
+          <div class="form-input flex">
             <input
               type="password"
               id="password"
@@ -102,16 +92,16 @@
         <div class="form-group">
           <div class="form-label">
             <label for="password-confirm" class="control-label"
-              >Confirm password</label
+              >Confirm Password</label
             >
           </div>
-          <div class="form-input">
+          <div class="form-input flex">
             <input
               type="password"
               id="password-confirm"
               class="form-control"
               name="password-confirm"
-              errormessage="Please confirm password"
+              
               required=""
             />
           </div>
@@ -127,15 +117,23 @@
               >What country are you based?</label
             >
           </div>
-          <div class="form-input">
+          <div class="form-input flex">
             <select
               id="country-select"
               class="form-control"
-              name="user.attributes.country"
-              errormessage="Please select country"
-              required=""
+             required=""
+             v-model="country"
             >
               <option value="">Select Country</option>
+                <option value="Algeria">Algeria</option>
+							<option value="Brazil">Brazil</option>
+              <option value="China">China</option>
+              <option value="Georgia">Georgia</option>
+						<option value="Germany">Germany</option>
+            <option value="India">India</option>
+           <option value="Qatar">Qatar</option>
+           <option value="South Korea">South Korea</option>
+           <option value="United Kingdom">United Kingdom</option>
             </select>
           </div>
         </div>
@@ -147,13 +145,19 @@
               >How did you hear about us?</label
             >
           </div>
-          <div class="form-input">
+          <div class="form-input flex ">
             <select
               id="info-source"
               class="form-control"
-              name="user.attributes.infoSource"
+            v-model="Recommendations"
             >
-              <option value="Recommendations">Recommendations</option>
+            <option value="Recommendations">Recommendations</option>
+              <option value="Facebook">Facebook</option>
+						<option value="Twitter">Twitter</option>
+						<option value="LinkedIn">LinkedIn</option>
+						<option value="Google">Google</option>
+						<option value="Investor's Network">Investor's Network</option>
+						<option value="Others">Others</option>
             </select>
           </div>
         </div>
@@ -199,42 +203,59 @@ export default {
   data() {
  return {
    errors: [],
-   firstName: '',
-   lastName: '',
-   email: '',
-   password: '',
+   firstName: "",
+   lastName: "",
+   email: "",
+   password: "",
+   country: "",
+   Recommendations:""
    
- }
+ };
   },
-  
-
-
   methods: {
-    previous() {
-      this.$emit("previous");
-    },
-    next(e) {
-       this.$emit("next");
-       this.errors = {}
+  next(e)
+   {
+    
+   this.errors=[];
+   
+    if(!this.firstName) 
+      {
+       this.errors.push("First Name is required");
+      }
 
-if(this.firstName && this.lastName)
+     if(!this.lastName) 
+     {
+     this.errors.push("Last Name is required");
+    }
 
-this.error=[];
-if(!this.firstName)
-{
-  this.error.push("First Name is required")
-}
-if(!this.lastName)
-{
-  this.error.push("Last Name is required")
-}
-console.warn("errors",this.error)
-e.preventDefault()
+    if(!this.email) 
+    {
+    this.errors.push("Email is required");
+   }
+  
+    if(!this.password) 
+      {
+      this.errors.push("Password is required");
+      }
+        if(!this.country) 
+      {
+      this.errors.push("Selected country is required");
+      }
+  if(!this.Recommendations) 
+      {
+      this.errors.push("Recommendation is required");
+      }
+ if (this.errors.length < 1 ) {
+        this.$emit("next");
+        e.preventDefault();
+      }
+
+ 
      
-
-    },
-  },
-};
+   },
+  } 
+  
+}
 </script>
 
 <style scoped>
@@ -268,9 +289,9 @@ e.preventDefault()
 /* form */
 .form-row {
   display: flex;
-  flex-wrap: wrap;
-  margin-right: -5px;
-  margin-left: -5px;
+
+  margin-right: 5px;
+  margin-left: 5px;
 }
 .form-horizontal .form-group {
   margin-right: -20px;
@@ -285,19 +306,24 @@ label {
   font-weight: 600;
   display: inline-block;
   max-width: 100%;
+  font-size: 1.2rem;
 }
 .form-label {
   position: relative;
   min-height: 1px;
   margin: 10px 0px;
 }
-
+input:hover{
+border: 1px solid #5bc0de;
+color: #5bc0de;
+transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
 input,
 select {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: 2.48438rem;
+  height: 3.48438rem;
   margin: 0 0 1rem;
   padding: 0.5rem;
   border: 1px solid #cacaca;
@@ -309,7 +335,7 @@ select {
   color: #4b4b4b;
   transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
   appearance: none;
-
+box-shadow: #5bc0de;
   padding-left: 1rem;
   padding-bottom: 0.04rem;
 }
@@ -321,6 +347,7 @@ select {
   vertical-align: middle;
   margin-left: 5px;
   float: left;
+  font-size: 1.4rem;
 }
 
 .btn-group > .btn:first-child {
@@ -346,7 +373,7 @@ select {
   user-select: none;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 1.4rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,

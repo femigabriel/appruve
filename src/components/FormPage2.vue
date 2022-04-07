@@ -11,13 +11,13 @@
               Registered Business Name
             </label>
           </div>
-          <div class="form-input">
+          <div class="form-input flex">
             <input
               id="business-name"
               type="text"
               class="form-control"
               name="user.attributes.businessName"
-              errormessage="Please enter business name"
+           v-model="businessName"
               required=""
             />
           </div>
@@ -30,13 +30,13 @@
             >Business Address</label
           >
         </div>
-        <div class="form-input">
+        <div class="form-input flex">
           <input
             type="text"
             id="business-address"
             class="form-control"
             name="user.attributes.businessAddress"
-            errormessage="Please enter business address"
+             v-model="businessAddress"
             required=""
           />
         </div>
@@ -265,7 +265,37 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "FormPage2",
+  data() {
+    return {
+      errors: [],
+      businessName: "",
+      businessAddress: "",
+    };
+  },
+
+  methods: {
+    previous() {
+      this.$emit("previous");
+    },
+    next(e) {
+      
+      this.errors = [];
+      if (!this.businessName) {
+        this.errors.push("Business' Name is required");
+      }
+      if (!this.businessAddress) {
+        this.errors.push("Business' Address is required");
+      }
+      if (this.errors.length < 1) {
+        this.$emit("next");
+        e.preventDefault();
+      }
+    
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -303,9 +333,11 @@ textarea {
 			
 
 }
-[type=text] {
+[type=text]
+ {
 box-sizing: border-box;
-    width: 100%;
+    width: 90%;
+   
 	margin: 0 0 1rem;
     padding: 0.5rem;
     border: 1px solid #cacaca;
@@ -321,6 +353,11 @@ box-sizing: border-box;
 	padding-left: 1rem;
     padding-bottom: 0.04rem;
 }
+[type=text]:hover{
+box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
 .custom-control {
     position: relative;
    display: inline-flex;
@@ -335,19 +372,19 @@ input[type="checkbox"], input[type="radio"] {
 label {
     display: inline-block;
     max-width: 100%;
+    font-size: 1.4rem;
+   
+  
 }
 .custom-control-label {
     position: relative;
     margin-bottom: 0;
 }
-label {
-  font-weight: 600;
-  display: inline-block;
-  max-width: 100%;
-}
+
 .form-label {
   position: relative;
   min-height: 1px;
   margin: 10px 0px;
+  font-weight: 600;
 }
 </style>

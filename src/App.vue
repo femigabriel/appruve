@@ -9,13 +9,18 @@
       @next="current = current + 1"
       @previous="current = current - 1"
   /> 
-  
+  <FormPage3
+  v-show="current == 2"
+      
+      @previous="current = current - 1"
+   />
 </template>
 
 <script>
 import Logo from "./components/Logo.vue";
 import FormPage from "./components/FormPage.vue";
 import FormPage2 from "./components/FormPage2.vue";
+import FormPage3 from "./components/FormPage3.vue";
 
 
 export default {
@@ -24,7 +29,7 @@ export default {
     Logo,
     FormPage,
     FormPage2,
-  
+  FormPage3
   },
 
     data() {
@@ -69,12 +74,12 @@ body {
   line-height: 1.66666667;
 }
 .flex {
-  display: flex;
-  gap: var(--gap, 1rem);
+  width: 20.3em;
+     
 }
 .grid {
-  display: grid;
-  gap: var(--gap, 1rem);
+ width: 92%;
+    
 }
 .form-row {
   display: flex;
